@@ -92,7 +92,7 @@ class Schema_Table_Definition {
 	 * ------------------------------------------------------------ */
     
     public function integer($column_name, $options = array()) {
-        $this->_add_definition_rule($column_name, array(
+        $this->add_definition_rule($column_name, array(
             'type' => 'INT'
         ), $options);
     }
@@ -107,26 +107,26 @@ class Schema_Table_Definition {
     }
     
     public function string($column_name, $constraint = 200, $options = array()) {
-        $this->_add_definition_rule($column_name, array(
+        $this->add_definition_rule($column_name, array(
             'type' => 'VARCHAR',
             'constraint' => $constraint
         ), $options);
     }
     
     public function text($column_name, $options = array()) {
-        $this->_add_definition_rule($column_name, array(
+        $this->add_definition_rule($column_name, array(
             'type' => 'TEXT'
         ), $options);
     }
     
     public function date($column_name, $options = array()) {
-        $this->_add_definition_rule($column_name, array(
+        $this->add_definition_rule($column_name, array(
             'type' => 'DATE'
         ), $options);
     }
     
     public function datetime($column_name, $options = array()) {
-        $this->_add_definition_rule($column_name, array(
+        $this->add_definition_rule($column_name, array(
             'type' => 'DATETIME'
         ), $options);
     }
@@ -147,12 +147,8 @@ class Schema_Table_Definition {
         $this->definition['keys'][$column_name] = $primary;
     }
     
-    /* --------------------------------------------------------------
-	 * HELPER METHODS
-	 * ------------------------------------------------------------ */
-    
-    protected function _add_definition_rule($column_name, $rule, $options) {
+    public function add_definition_rule($column_name, $rule, $options) {
         $this->definition['columns'][$column_name] = array_merge($rule, $options);
     }
-    
+        
 }
