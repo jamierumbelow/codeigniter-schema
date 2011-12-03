@@ -53,3 +53,20 @@ Schema::create_table('users', function($table){
 });
 ```
 
+## Running Unit Tests
+
+Schema comes with a unit test suite to ensure that the software remains stable and refactorable. In order to run the unit tests, you'll need to install [PEAR](http://pear.php.net) and [Mockery](https://github.com/padraic/mockery).
+
+Once they're installed, be sure to grab the submodules (this includes [Inferno](https://github.com/jamierumbelow/inferno), the testing framework).
+
+```bash
+$ cd path_to_schema_repo/
+$ git submodule init
+$ git submodule update
+```
+
+Then, all it takes is a call to **tests/Schema_test.php**!
+
+```bash
+$ php tests/Schema_test.php
+```
