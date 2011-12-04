@@ -38,6 +38,15 @@ class SchemaTest extends UnitTest {
         );
     }
     
+    public function test_schema_table_definition_auto_increment_integer() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->auto_increment_integer('column_name', array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'INT', 'unsigned' => TRUE, 'auto_increment' => TRUE, 'option' => 'here'))
+        );
+    }
+    
     public function test_schema_table_definition_string() {
         $mock_schema_table_definition = m::mock('Schema_Table_Definition[add_definition_rule]');
         $schema_table_definition = new Schema_Table_Definition('table_name');
