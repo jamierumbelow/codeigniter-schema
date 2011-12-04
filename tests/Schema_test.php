@@ -11,8 +11,6 @@
  
 require_once 'support/environment.php';
 
-use Mockery as m;
-
 class SchemaTest extends UnitTest {
     
     /* --------------------------------------------------------------
@@ -25,12 +23,7 @@ class SchemaTest extends UnitTest {
     }
     
     public function test_schema_table_definition_integer() {
-        $mock_schema_table_definition = m::mock('Schema_Table_Definition[add_definition_rule]');
         $schema_table_definition = new Schema_Table_Definition('table_name');
-        
-        $mock_schema_table_definition->shouldReceive('add_definition_rule')->once()->with('column_name', array( 'type' => 'INT' ), array( 'option' => 'here' ));
-        
-        $mock_schema_table_definition->integer('column_name', array( 'option' => 'here' ));
         $schema_table_definition->integer('column_name', array( 'option' => 'here' ));
         
         $this->assert_equal($schema_table_definition->columns(), array(
@@ -48,26 +41,21 @@ class SchemaTest extends UnitTest {
     }
     
     public function test_schema_table_definition_string() {
-        $mock_schema_table_definition = m::mock('Schema_Table_Definition[add_definition_rule]');
         $schema_table_definition = new Schema_Table_Definition('table_name');
-        
-        $mock_schema_table_definition->shouldReceive('add_definition_rule')->once()->with('column_name', array( 'type' => 'VARCHAR', 'constraint' => 200 ), array( 'option' => 'here' ));
-        
-        $mock_schema_table_definition->string('column_name', 200, array( 'option' => 'here' ));
         $schema_table_definition->string('column_name', 100, array( 'option' => 'here' ));
         
         $this->assert_equal($schema_table_definition->columns(), array(
             'column_name' => array('type' => 'VARCHAR', 'constraint' => 100, 'option' => 'here'))
         );
     }
-            
-    // Close Mockery
-    public function tear_down() { 
-        try {
-            m::close();
-        } catch (Exception $e) {
-            $this->error($e->getMessage());
-        }
+    
+    public function test_schema_table_definition_text() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->text('column_name', array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'TEXT', 'option' => 'here'))
+        );
     }
 }
 
