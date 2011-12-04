@@ -66,6 +66,15 @@ class SchemaTest extends UnitTest {
             'column_name' => array('type' => 'DATE', 'option' => 'here'))
         );
     }
+    
+    public function test_schema_table_definition_datetime() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->datetime('column_name', array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'DATETIME', 'option' => 'here'))
+        );
+    }
 }
 
 UnitTest::test();
