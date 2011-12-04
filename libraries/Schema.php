@@ -131,8 +131,9 @@ class Schema_Table_Definition {
         ), $options);
     }
     
-    public function timestamps() {
-        $this->datetime('created_at', array(''));
+    public function timestamps($options = array()) {
+        $this->datetime('created_at', $options);
+        $this->datetime('updated_at', $options);
     }
     
     /* --------------------------------------------------------------

@@ -14,13 +14,8 @@ require_once 'support/environment.php';
 class SchemaTest extends UnitTest {
     
     /* --------------------------------------------------------------
-     * SCHEMA TABLE DEFINITION TESTS
+     * COLUMN API TESTS
      * ------------------------------------------------------------ */
-    
-    public function test_schema_table_definition__construct() {
-        $schema_table_definition = new Schema_Table_Definition('table_name');
-        $this->assert_equal($schema_table_definition->table_name(), 'table_name');
-    }
     
     public function test_schema_table_definition_integer() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
@@ -74,6 +69,46 @@ class SchemaTest extends UnitTest {
         $this->assert_equal($schema_table_definition->columns(), array(
             'column_name' => array('type' => 'DATETIME', 'option' => 'here'))
         );
+    }
+    
+    public function test_schema_table_definition_timestamps() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->timestamps();
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'created_at' => array('type' => 'DATETIME'),
+            'updated_at' => array('type' => 'DATETIME')
+        ));
+    }
+    
+    /* --------------------------------------------------------------
+     * MISC API TESTS
+     * ------------------------------------------------------------ */
+     
+    public function test_schema_table_definition__construct() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $this->assert_equal($schema_table_definition->table_name(), 'table_name');
+    }
+     
+    public function test_schema_table_definition_primary_key() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->primary_key('column_name');
+        
+        $this->assert_equal($schema_table_definition->keys(), array('column_name' => TRUE));
+    }
+    
+    public function test_schema_table_definition_key() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->key('column_name');
+        
+        $this->assert_equal($schema_table_definition->keys(), array('column_name' => FALSE));
+    }
+    
+    public function test_schema_table_definition_add_definition_rule() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->add_definition_rule('column_name', array('type' => 'INT'), array('opts' => 'here'));
+        
+        $this->assert_equal($schema_table_definition->columns(), array('column_name' => array('type' => 'INT', 'opts' => 'here')));
     }
 }
 
