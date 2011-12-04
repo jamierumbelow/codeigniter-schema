@@ -11,13 +11,13 @@
  
 require_once 'support/environment.php';
 
-class SchemaTest extends UnitTest {
+class Schema_Table_Definition_Test extends UnitTest {
     
     /* --------------------------------------------------------------
      * COLUMN API TESTS
      * ------------------------------------------------------------ */
     
-    public function test_schema_table_definition_integer() {
+    public function test_integer() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->integer('column_name', array( 'option' => 'here' ));
         
@@ -26,7 +26,7 @@ class SchemaTest extends UnitTest {
         );
     }
     
-    public function test_schema_table_definition_auto_increment_integer() {
+    public function test_auto_increment_integer() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->auto_increment_integer('column_name', array( 'option' => 'here' ));
         
@@ -35,7 +35,7 @@ class SchemaTest extends UnitTest {
         );
     }
     
-    public function test_schema_table_definition_string() {
+    public function test_string() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->string('column_name', 100, array( 'option' => 'here' ));
         
@@ -44,7 +44,7 @@ class SchemaTest extends UnitTest {
         );
     }
     
-    public function test_schema_table_definition_text() {
+    public function test_text() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->text('column_name', array( 'option' => 'here' ));
         
@@ -53,7 +53,7 @@ class SchemaTest extends UnitTest {
         );
     }
     
-    public function test_schema_table_definition_date() {
+    public function test_date() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->date('column_name', array( 'option' => 'here' ));
         
@@ -62,7 +62,7 @@ class SchemaTest extends UnitTest {
         );
     }
     
-    public function test_schema_table_definition_datetime() {
+    public function test_datetime() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->datetime('column_name', array( 'option' => 'here' ));
         
@@ -71,7 +71,7 @@ class SchemaTest extends UnitTest {
         );
     }
     
-    public function test_schema_table_definition_timestamps() {
+    public function test_timestamps() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->timestamps();
         
@@ -85,26 +85,26 @@ class SchemaTest extends UnitTest {
      * MISC API TESTS
      * ------------------------------------------------------------ */
      
-    public function test_schema_table_definition__construct() {
+    public function test__construct() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $this->assert_equal($schema_table_definition->table_name(), 'table_name');
     }
      
-    public function test_schema_table_definition_primary_key() {
+    public function test_primary_key() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->primary_key('column_name');
         
         $this->assert_equal($schema_table_definition->keys(), array('column_name' => TRUE));
     }
     
-    public function test_schema_table_definition_key() {
+    public function test_key() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->key('column_name');
         
         $this->assert_equal($schema_table_definition->keys(), array('column_name' => FALSE));
     }
     
-    public function test_schema_table_definition_add_definition_rule() {
+    public function test_add_definition_rule() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->add_definition_rule('column_name', array('type' => 'INT'), array('opts' => 'here'));
         
