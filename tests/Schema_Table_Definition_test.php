@@ -112,4 +112,6 @@ class Schema_Table_Definition_Test extends UnitTest {
     }
 }
 
-UnitTest::test();
+if (!defined('SCHEMA_TEST_ALL')) {
+    UnitTest::test();
+}

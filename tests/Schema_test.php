@@ -58,4 +58,6 @@ class Schema_Test extends UnitTest {
     }
 }
 
-UnitTest::test();
+if (!defined('SCHEMA_TEST_ALL')) {
+    UnitTest::test();
+}
