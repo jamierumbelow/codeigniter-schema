@@ -76,7 +76,7 @@ class Schema {
         $ci =& get_instance();
         $ci->load->dbforge();
         
-        $ci->dbforge->remove_column($table, $name);
+        $ci->dbforge->drop_column($table, $name);
     }
 }
 

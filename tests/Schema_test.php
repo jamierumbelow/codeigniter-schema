@@ -55,7 +55,7 @@ class Schema_Test extends UnitTest {
         $ci->dbforge = new Mock_DBForge();
         
         $ci->load->expect_call('dbforge');
-        $ci->dbforge->expect_call('remove_column', 1, array('table_name', 'column_name'));
+        $ci->dbforge->expect_call('drop_column', 1, array('table_name', 'column_name'));
         
         Schema::remove_column('table_name', 'column_name');
         
