@@ -23,7 +23,7 @@ Schema::create_table('users', function($table){
 
 ## Requirements
 
-Schema requires at minimum PHP5.3 and CodeIgniter 2.0.0.
+Schema requires at minimum PHP 5.1.2 (although 5.3 is recommended) and CodeIgniter 2.0.0.
 
 ## Installation
 
@@ -51,6 +51,15 @@ This function takes a single parameter, which is an instance of `Schema_Table_De
 Schema::create_table('users', function($table){
     // Definition goes in here
 });
+```
+
+If you're not running PHP5.3, you can pass through `FALSE` (boolean) and `create_table()` will return the table object directly. Finish your statements with a call to `$table->create_table()`.
+
+```php
+$table = Schema::create_table('users', TRUE);
+
+$table->string('name');
+$table->create_table();
 ```
 
 ## Modifying Tables
