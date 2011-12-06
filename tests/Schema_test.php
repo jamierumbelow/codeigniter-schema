@@ -43,7 +43,7 @@ class Schema_Test extends UnitTest {
         $ci->load->expect_call('dbforge');
         $ci->dbforge->expect_call('add_column', 1, array('table_name', $this->mock_column_data()));
         
-        Schema::add_column('table_name', 'integer', 'column_name');
+        Schema::add_column('table_name', 'column_name', 'integer');
         
         $ci->load->assert($this);
         $ci->dbforge->assert($this);

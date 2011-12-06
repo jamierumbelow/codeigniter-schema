@@ -47,7 +47,7 @@ class Schema {
         $ci->dbforge->create_table($table_definition->table_name());
     }
     
-    static public function add_column($table, $type, $name, $options = array()) {
+    static public function add_column($table, $name, $type, $options = array()) {
         $column = array();
         
         if (isset(self::$types[$type]))
@@ -60,8 +60,8 @@ class Schema {
         }
         elseif ($type == 'timestamps')
         {
-            self::add_column($table, 'datetime', 'created_at');
-            self::add_column($table, 'datetime', 'updated_at');
+            self::add_column($table, 'created_at', 'datetime');
+            self::add_column($table, 'updated_at', 'datetime');
             
             return;
         }
