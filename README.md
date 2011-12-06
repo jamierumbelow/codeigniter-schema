@@ -53,6 +53,16 @@ Schema::create_table('users', function($table){
 });
 ```
 
+## Modifying Tables
+
+Schema also contains a series of functions that allow you to modify an existing table.
+
+`Schema::add_column()` lets you add a column to an existing table very simply. It takes three parameters, the table name, the column name and the column data type.
+
+```php
+Schema::add_column('users', 'rank', 'integer');
+```
+
 ## Running Unit Tests
 
 Schema comes with a unit test suite to ensure that the software remains stable and refactorable. In order to run the unit tests, you'll need to install [PEAR](http://pear.php.net) and [Mockery](https://github.com/padraic/mockery).
