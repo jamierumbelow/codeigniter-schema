@@ -18,6 +18,8 @@ class Schema {
     /* --------------------------------------------------------------
 	 * VARIABLES
 	 * ------------------------------------------------------------ */
+	 
+	static public $types = array( 'integer' => 'INT', 'string' => 'VARCHAR', 'text' => 'TEXT', 'date' => 'DATE', 'datetime' => 'DATETIME' );
     
     /* --------------------------------------------------------------
 	 * GENERIC METHODS
@@ -45,6 +47,30 @@ class Schema {
         $ci->dbforge->create_table($table_definition->table_name());
     }
     
+    static public function add_column($table, $type, $name, $options = array()) {
+        $column = array();
+        
+        if (isset(self::$types[$type]))
+        {
+            $column = array( 'type' => self::$types[$type] ); 
+        } 
+        elseif ($type == 'auto_increment_integer')
+        {
+            $column = array( 'type' => 'INT', 'unsigned' => TRUE, 'auto_increment' => TRUE );
+        }
+        elseif ($type == 'timestamps')
+        {
+            self::add_column($table, 'datetime', 'created_at');
+            self::add_column($table, 'datetime', 'updated_at');
+            
+            return;
+        }
+        
+        $ci =& get_instance();
+        $ci->load->dbforge();
+        
+        $ci->dbforge->add_column($table, array($name => array_merge($column, $options)));
+    }
 }
 
 /* --------------------------------------------------------------

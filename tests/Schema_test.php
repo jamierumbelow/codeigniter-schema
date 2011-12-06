@@ -28,8 +28,22 @@ class Schema_Test extends UnitTest {
         $ci->dbforge->expect_call('create_table', 1, 'table_name');
         
         Schema::create_table('name', function(&$table){
-            $table = new Mock_Schema_Test_Definition();
+            $table = new Mock_Schema_Test_Definition_Create_Table();
         });
+        
+        $ci->load->assert($this);
+        $ci->dbforge->assert($this);
+    }
+    
+    public function test_add_column() {
+        $ci =& get_instance();
+        $ci->load = new Mock_Loader();
+        $ci->dbforge = new Mock_DBForge();
+        
+        $ci->load->expect_call('dbforge');
+        $ci->dbforge->expect_call('add_column', 1, array('table_name', $this->mock_column_data()));
+        
+        Schema::add_column('table_name', 'integer', 'column_name');
         
         $ci->load->assert($this);
         $ci->dbforge->assert($this);

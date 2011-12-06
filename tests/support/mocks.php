@@ -46,9 +46,10 @@ class Mock_DBForge extends Mocked {
     public function add_field($columns) { $this->_track_call('add_field', $columns); }
     public function add_key($key, $primary = FALSE) { $this->_track_call('add_key', array($key, $primary)); }
     public function create_table($name) { $this->_track_call('create_table', $name); }
+    public function add_column($table, $column) { $this->_track_call('add_column', array($table, $column)); }
 }
 
-class Mock_Schema_Test_Definition {
+class Mock_Schema_Test_Definition_Create_Table {
     public function columns() { return Schema_Test::mock_column_data(); }
     public function keys() { return array(); }
     public function table_name() { return 'table_name'; }
