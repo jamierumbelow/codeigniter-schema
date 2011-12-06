@@ -48,6 +48,20 @@ class Schema_Test extends UnitTest {
         $ci->load->assert($this);
         $ci->dbforge->assert($this);
     }
+    
+    public function test_remove_column() {
+        $ci =& get_instance();
+        $ci->load = new Mock_Loader();
+        $ci->dbforge = new Mock_DBForge();
+        
+        $ci->load->expect_call('dbforge');
+        $ci->dbforge->expect_call('remove_column', 1, array('table_name', 'column_name'));
+        
+        Schema::remove_column('table_name', 'column_name');
+        
+        $ci->load->assert($this);
+        $ci->dbforge->assert($this);
+    }
      
     /* --------------------------------------------------------------
      * HELPER METHODS

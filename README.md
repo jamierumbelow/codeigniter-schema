@@ -57,10 +57,20 @@ Schema::create_table('users', function($table){
 
 Schema also contains a series of functions that allow you to modify an existing table.
 
+### Add Column
+
 `Schema::add_column()` lets you add a column to an existing table very simply. It takes three parameters, the table name, the column name and the column data type.
 
 ```php
 Schema::add_column('users', 'rank', 'integer');
+```
+
+### Remove Column
+
+`Schema::remove_column()` lets you remove a column from a database table.
+
+```php
+Schema::remove_column('users', 'rank');
 ```
 
 ## Running Unit Tests

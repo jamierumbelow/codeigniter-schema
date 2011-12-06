@@ -71,6 +71,13 @@ class Schema {
         
         $ci->dbforge->add_column($table, array($name => array_merge($column, $options)));
     }
+    
+    static public function remove_column($table, $name) {
+        $ci =& get_instance();
+        $ci->load->dbforge();
+        
+        $ci->dbforge->remove_column($table, $name);
+    }
 }
 
 /* --------------------------------------------------------------
