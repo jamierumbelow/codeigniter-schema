@@ -56,7 +56,7 @@ Schema::create_table('users', function($table){
 If you're not running PHP5.3, you can pass through `FALSE` (boolean) and `create_table()` will return the table object directly. Finish your statements with a call to `$table->create_table()`.
 
 ```php
-$table = Schema::create_table('users', TRUE);
+$table = Schema::create_table('users', FALSE);
 
 $table->string('name');
 $table->create_table();
