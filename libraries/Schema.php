@@ -80,6 +80,15 @@ class Schema {
         
         $ci->dbforge->modify_column($table, array( $name => array( 'name' => $new_name )));
     }
+    
+    static public function modify_column($table, $name, $type, $options = array()) {
+        $column = array( 'type' => self::$types[$type] );
+        
+        $ci =& get_instance();
+        $ci->load->dbforge();
+        
+        $ci->dbforge->modify_column($table, array( $name => array_merge($column, $options) ));
+    }
 }
 
 /* --------------------------------------------------------------
