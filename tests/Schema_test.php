@@ -61,6 +61,20 @@ class Schema_Test extends UnitTest {
         $ci->load->assert($this);
         $ci->dbforge->assert($this);
     }
+    
+    public function test_rename_column() {
+        $ci =& get_instance();
+        $ci->load = new Mock_Loader();
+        $ci->dbforge = new Mock_DBForge();
+        
+        $ci->load->expect_call('dbforge');
+        $ci->dbforge->expect_call('modify_column', 1, array('table_name', array('column_name' => array( 'name' => 'new_column_name'))));
+        
+        Schema::rename_column('table_name', 'column_name', 'new_column_name');
+        
+        $ci->load->assert($this);
+        $ci->dbforge->assert($this);
+    }
 }
 
 if (!defined('SCHEMA_TEST_ALL')) {

@@ -82,6 +82,14 @@ Schema::add_column('users', 'rank', 'integer');
 Schema::remove_column('users', 'rank');
 ```
 
+### Rename Column
+
+`Schema::rename_column()` lets you rename a column in a database table.
+
+```php
+Schema::rename_column('users', 'rank', 'position');
+```
+
 ## Running Unit Tests
 
 Schema comes with a unit test suite to ensure that the software remains stable and refactorable. It uses the very simple and lightweight [PHP testing framework Inferno](https://github.com/jamierumbelow/inferno). Inferno is tucked away in a submodule:

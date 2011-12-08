@@ -52,6 +52,7 @@ class Mock_DBForge extends Mocked {
     public function create_table($name) { $this->_track_call('create_table', $name); }
     public function add_column($table, $column) { $this->_track_call('add_column', array($table, $column)); }
     public function drop_column($table, $column) { $this->_track_call('drop_column', array($table, $column)); }
+    public function modify_column($table, $column) { $this->_track_call('modify_column', array($table, $column)); }
 }
 
 class Mock_Schema_Table_Definition extends Schema_Table_Definition {

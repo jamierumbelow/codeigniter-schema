@@ -73,6 +73,13 @@ class Schema {
         
         $ci->dbforge->drop_column($table, $name);
     }
+    
+    static public function rename_column($table, $name, $new_name) {
+        $ci =& get_instance();
+        $ci->load->dbforge();
+        
+        $ci->dbforge->modify_column($table, array( $name => array( 'name' => $new_name )));
+    }
 }
 
 /* --------------------------------------------------------------
