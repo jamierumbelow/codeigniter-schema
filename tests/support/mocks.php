@@ -20,7 +20,11 @@ class Mocked {
     
     public function assert(&$test) {
         foreach ($this->_expectations as $method => $details) {
-            $test->assert_equal($details[1], $this->_calls[$method][0]);
+            if (isset($this->_calls[$method])) {
+                $test->assert_equal($details[1], $this->_calls[$method][0], "$method expected to be called with " . str_replace("\n", "", var_export($this->_calls[$method][0], TRUE)) . ", instead called with " . str_replace("\n", "", var_export($details[1], TRUE)));
+            } else {
+                $test->failure("$method expected to be called on " . get_class($this) . ", no calls found");
+            }
         }
     }
     
@@ -54,6 +58,7 @@ class Mock_Schema_Test_Definition_Create_Table {
     public function columns() { return Schema_Test::mock_column_data(); }
     public function keys() { return array(); }
     public function table_name() { return 'table_name'; }
+    public function create_table() { }
 }
 
 function &get_instance() {
