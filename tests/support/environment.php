@@ -16,6 +16,13 @@ require_once 'libraries/Schema.php';
 require_once 'tests/support/inferno/lib/inferno.php';
 require_once 'tests/support/mocks.php';
 
-// require_once 'Mockery/Loader.php';
-// $loader = new \Mockery\Loader;
-// $loader->register();
+class Schema_Test_Data {
+    
+    /* --------------------------------------------------------------
+     * HELPER METHODS
+     * ------------------------------------------------------------ */
+     
+    static public function mock_column_data() {
+        return array('column_name' => array('type' => 'INT'));
+    }
+}

@@ -33,18 +33,13 @@ class Schema {
     
     static public function create_table($table_name, $callback) {
         $table_definition = new Schema_Table_Definition($table_name);
-        $callback($table_definition);
         
-        $ci =& get_instance();
-        $ci->load->dbforge();
-        
-        $ci->dbforge->add_field($table_definition->columns());
-        
-        foreach ($table_definition->keys() as $key => $primary) {
-            $ci->dbforge->add_key($key, $primary);
+        if ($callback === FALSE) {
+            return $table_definition;
+        } else {
+            $callback($table_definition);
+            $table_definition->create_table();
         }
-        
-        $ci->dbforge->create_table($table_definition->table_name());
     }
     
     static public function add_column($table, $name, $type, $options = array()) {
@@ -118,6 +113,19 @@ class Schema_Table_Definition {
     
     public function table_name() {
         return $this->name;
+    }
+    
+    public function create_table() {
+        $ci =& get_instance();
+        $ci->load->dbforge();
+        
+        $ci->dbforge->add_field($this->columns());
+        
+        foreach ($this->keys() as $key => $primary) {
+            $ci->dbforge->add_key($key, $primary);
+        }
+        
+        $ci->dbforge->create_table($this->table_name());
     }
     
     /* --------------------------------------------------------------

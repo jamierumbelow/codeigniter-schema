@@ -13,6 +13,23 @@ require_once 'support/environment.php';
 
 class Schema_Table_Definition_Test extends UnitTest {
     
+    public function test_create_table() {
+        $ci =& get_instance();
+        $ci->load = new Mock_Loader();
+        $ci->dbforge = new Mock_DBForge();
+        
+        $ci->load->expect_call('dbforge');
+        
+        $ci->dbforge->expect_call('add_field', 1, array('column_name' => array('type' => 'INT')));
+        $ci->dbforge->expect_call('create_table', 1, 'table_name');
+        
+        $mock_schema_table_definition = new Mock_Schema_Table_Definition('table_name');
+        $mock_schema_table_definition->create_table();
+        
+        $ci->load->assert($this);
+        $ci->dbforge->assert($this);
+    }
+    
     /* --------------------------------------------------------------
      * COLUMN API TESTS
      * ------------------------------------------------------------ */
