@@ -100,6 +100,8 @@ Schema::modify_column('users', 'rank', 'string', array('constraint' => 250));
 
 ## Running Unit Tests
 
+**NOTE: In order to run the test suite PHP5.3 is required**
+
 Schema comes with a unit test suite to ensure that the software remains stable and refactorable. It uses the very simple and lightweight [PHP testing framework Inferno](https://github.com/jamierumbelow/inferno). Inferno is tucked away in a submodule:
 
 ```bash
