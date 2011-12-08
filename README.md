@@ -62,11 +62,35 @@ $table->string('name');
 $table->create_table();
 ```
 
+## Data Types
+
+`Schema_Table_Definition` has a bunch of methods that allow you to create data types. These are all reasonably self-explanatory:
+
+* `integer($name)` - create an INT column
+* `string($name, $constraint = 200)` - create a VARCHAR column (with optional constraint)
+* `text($name)` - create a TEXT column
+* `date($name)` - create a DATE column
+* `datetime($text)` - create a DATETIME column
+
+There are also two special methods to speed up your development.
+
+`auto_increment_integer($name)` allows you to specify an auto_increment INT (with required primary keys). This is most helpful for adding an id column:
+
+```php
+$table->auto_increment_integer('id');
+```
+
+`timestamps()` automatically generates two columns, `created_at` and `updated_at`, both `DATETIME` columns.
+
+### Keys
+
+You can add keys (indexes) through two functions, `primary_key($name)`, and `key($name, $primary = FALSE)`. `primary_key()` is a small wrapper around `key()`.
+
 ## Modifying Tables
 
 Schema also contains a series of functions that allow you to modify an existing table.
 
-### Add Column
+### Add Columns
 
 `Schema::add_column()` lets you add a column to an existing table very simply. It takes three parameters, the table name, the column name and the column data type.
 
@@ -74,7 +98,7 @@ Schema also contains a series of functions that allow you to modify an existing 
 Schema::add_column('users', 'rank', 'integer');
 ```
 
-### Remove Column
+### Remove Columns
 
 `Schema::remove_column()` lets you remove a column from a database table.
 
@@ -82,7 +106,7 @@ Schema::add_column('users', 'rank', 'integer');
 Schema::remove_column('users', 'rank');
 ```
 
-### Rename Column
+### Rename Columns
 
 `Schema::rename_column()` lets you rename a column in a database table.
 
@@ -90,7 +114,7 @@ Schema::remove_column('users', 'rank');
 Schema::rename_column('users', 'rank', 'position');
 ```
 
-### Modify Column
+### Modify Columns
 
 `Schema::modify_column()` allows you to modify the type and properties of a column.
 
