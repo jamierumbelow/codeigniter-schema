@@ -42,7 +42,7 @@ class Schema {
         }
     }
     
-    static public function add_column($table, $name, $type, $options = array()) {
+    static public function add_column($table, $name, $type, $options = array(), $after_column = '') {
         $column = array();
         
         if (isset(self::$types[$type]))
@@ -64,7 +64,7 @@ class Schema {
         $ci =& get_instance();
         $ci->load->dbforge();
         
-        $ci->dbforge->add_column($table, array($name => array_merge($column, $options)));
+        $ci->dbforge->add_column($table, array($name => array_merge($column, $options)), $after_column);
     }
     
     static public function remove_column($table, $name) {

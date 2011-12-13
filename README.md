@@ -137,7 +137,7 @@ $ git submodule update
 Then, all it takes is a call to **tests/all.php** to run the entire test suite.
 
 ```bash
-$ php tests/run.php
+$ php tests/all.php
 ```
 
 You can also specify particular files in the suite by calling that file directly:
