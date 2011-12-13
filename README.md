@@ -30,7 +30,7 @@ Schema requires at minimum PHP 5.1.2 (although 5.3 is recommended) and CodeIgnit
 Schema is easy to install using [CodeIgniter Sparks](http://getsparks.org). Simply install `schema`:
 
 ```bash
-$ php tools/sparks install schema
+$ php tools/spark install schema
 ```
 
 ...and load the Spark when you want to use it:
