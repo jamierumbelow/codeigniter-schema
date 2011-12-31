@@ -148,3 +148,11 @@ You can also specify particular files in the suite by calling that file directly
 ```bash
 $ php tests/Schema_test.php
 ```
+
+## Release Notes
+
+* **0.2.0**
+    * Added the ability to add a column after another
+    * Added a boolean() method
+* **0.1.0**
+    * Initial Release
