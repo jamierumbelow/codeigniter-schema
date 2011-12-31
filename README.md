@@ -17,6 +17,8 @@ Schema::create_table('users', function($table){
     
     $table->text('biography');
     
+    $table->boolean('enabled');
+    
     $table->timestamps();
 });
 ```
@@ -71,6 +73,7 @@ $table->create_table();
 * `text($name)` - create a TEXT column
 * `date($name)` - create a DATE column
 * `datetime($text)` - create a DATETIME column
+* `boolean($name)` - MySQL doesn't have a native boolean type, so we create a TINYINT
 
 There are also two special methods to speed up your development.
 

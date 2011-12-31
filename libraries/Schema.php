@@ -19,7 +19,7 @@ class Schema {
 	 * VARIABLES
 	 * ------------------------------------------------------------ */
 	 
-	static public $types = array( 'integer' => 'INT', 'string' => 'VARCHAR', 'text' => 'TEXT', 'date' => 'DATE', 'datetime' => 'DATETIME' );
+	static public $types = array( 'integer' => 'INT', 'string' => 'VARCHAR', 'text' => 'TEXT', 'date' => 'DATE', 'datetime' => 'DATETIME', 'boolean' => 'TINYINT' );
     
     /* --------------------------------------------------------------
 	 * GENERIC METHODS
@@ -173,6 +173,12 @@ class Schema_Table_Definition {
     public function text($column_name, $options = array()) {
         $this->add_definition_rule($column_name, array(
             'type' => 'TEXT'
+        ), $options);
+    }
+    
+    public function boolean($column_name, $options = array()) {
+        $this->add_definition_rule($column_name, array(
+            'type' => 'TINYINT'
         ), $options);
     }
     

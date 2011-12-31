@@ -88,6 +88,15 @@ class Schema_Table_Definition_Test extends UnitTest {
         );
     }
     
+    public function test_boolean() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->boolean('column_name', array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'TINYINT', 'option' => 'here')
+        ));
+    }
+    
     public function test_timestamps() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->timestamps();
