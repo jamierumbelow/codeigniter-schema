@@ -57,7 +57,7 @@ class Schema {
     static public function add_column($table, $name, $type, $options = array(), $after_column = '') {
         $column = array();
         
-        if (isset(self::$types[$type]))
+        if (isset(self::$types[strtolower($type)]))
         {
             $column = array( 'type' => self::$types[$type] ); 
         } 
@@ -94,7 +94,7 @@ class Schema {
     }
     
     static public function modify_column($table, $name, $type, $options = array()) {
-        $column = array( 'type' => self::$types[$type] );
+        $column = array( 'type' => self::$types[strtolower($type)] );
         
         $ci =& get_instance();
         $ci->load->dbforge();
