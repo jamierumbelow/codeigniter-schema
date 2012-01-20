@@ -19,7 +19,19 @@ class Schema {
 	 * VARIABLES
 	 * ------------------------------------------------------------ */
 	 
-	static public $types = array( 'integer' => 'INT', 'string' => 'VARCHAR', 'text' => 'TEXT', 'date' => 'DATE', 'datetime' => 'DATETIME', 'boolean' => 'TINYINT' );
+	static public $types = array(
+		'integer' 	=> 'INT',
+		'int'		=> 'INT',
+		'bigint'	=> 'BIGINT',
+		'string' 	=> 'VARCHAR', 
+		'varchar'	=> 'VARCHAR',
+		'char'		=> 'CHAR',
+		'text' 		=> 'TEXT', 
+		'date' 		=> 'DATE', 
+		'datetime' 	=> 'DATETIME', 
+		'boolean' 	=> 'TINYINT',
+		'tinyint'	=> 'TINYINT'		
+	);
     
     /* --------------------------------------------------------------
 	 * GENERIC METHODS
