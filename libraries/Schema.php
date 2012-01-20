@@ -181,7 +181,14 @@ class Schema_Table_Definition {
             'constraint' => $constraint
         ), $options);
     }
-    
+
+    public function char($column_name, $constraint = 2, $options = array()) {
+        $this->add_definition_rule($column_name, array(
+            'type' => 'CHAR',
+            'constraint' => $constraint
+        ), $options);
+    }
+
     public function text($column_name, $options = array()) {
         $this->add_definition_rule($column_name, array(
             'type' => 'TEXT'
