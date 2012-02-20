@@ -46,6 +46,19 @@ class Mock_Loader extends Mocked {
     public function dbforge() { $this->_track_call('dbforge', array()); }
 }
 
+class Mock_DB extends Mocked {
+    public function field_data($table)
+    { 
+        $this->_track_call('field_data', array()); 
+
+        $table = new stdClass;
+        $table->name = 'column_name';
+        $table->type = 'INT';
+
+        return array( $table );
+    }
+}
+
 class Mock_DBForge extends Mocked {
     public function add_field($columns) { $this->_track_call('add_field', $columns); }
     public function add_key($key, $primary = FALSE) { $this->_track_call('add_key', array($key, $primary)); }

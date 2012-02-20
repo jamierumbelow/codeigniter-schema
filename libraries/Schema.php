@@ -78,7 +78,15 @@ class Schema {
         $ci =& get_instance();
         $ci->load->dbforge();
         
-        $ci->dbforge->modify_column($table, array( $name => array( 'name' => $new_name )));
+        $field_data = $ci->db->field_data($table);
+        $types = array();
+
+        foreach ($field_data as $col)
+        {
+            $types[$col->name] = $col->type;
+        }
+
+        $ci->dbforge->modify_column($table, array( $name => array( 'name' => $new_name, 'type' => $types[$name] )));
     }
     
     static public function modify_column($table, $name, $type, $options = array()) {
