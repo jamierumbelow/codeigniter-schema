@@ -60,7 +60,16 @@ class Schema_Table_Definition_Test extends UnitTest {
             'column_name' => array('type' => 'VARCHAR', 'constraint' => 100, 'option' => 'here'))
         );
     }
-    
+ 
+    public function test_char() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->string('column_name', 2, array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'CHAR', 'constraint' => 2, 'option' => 'here'))
+        );
+    }
+  
     public function test_text() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->text('column_name', array( 'option' => 'here' ));

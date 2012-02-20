@@ -19,7 +19,19 @@ class Schema {
 	 * VARIABLES
 	 * ------------------------------------------------------------ */
 	 
-	static public $types = array( 'integer' => 'INT', 'string' => 'VARCHAR', 'text' => 'TEXT', 'date' => 'DATE', 'datetime' => 'DATETIME', 'boolean' => 'TINYINT' );
+	static public $types = array(
+		'integer' 	=> 'INT',
+		'int'		=> 'INT',
+		'bigint'	=> 'BIGINT',
+		'string' 	=> 'VARCHAR', 
+		'varchar'	=> 'VARCHAR',
+		'char'		=> 'CHAR',
+		'text' 		=> 'TEXT', 
+		'date' 		=> 'DATE', 
+		'datetime' 	=> 'DATETIME', 
+		'boolean' 	=> 'TINYINT',
+		'tinyint'	=> 'TINYINT'		
+	);
     
     /* --------------------------------------------------------------
 	 * GENERIC METHODS
@@ -45,7 +57,7 @@ class Schema {
     static public function add_column($table, $name, $type, $options = array(), $after_column = '') {
         $column = array();
         
-        if (isset(self::$types[$type]))
+        if (isset(self::$types[strtolower($type)]))
         {
             $column = array( 'type' => self::$types[$type] ); 
         } 
@@ -90,7 +102,7 @@ class Schema {
     }
     
     static public function modify_column($table, $name, $type, $options = array()) {
-        $column = array( 'type' => self::$types[$type] );
+        $column = array( 'type' => self::$types[strtolower($type)] );
         
         $ci =& get_instance();
         $ci->load->dbforge();
@@ -177,7 +189,14 @@ class Schema_Table_Definition {
             'constraint' => $constraint
         ), $options);
     }
-    
+
+    public function char($column_name, $constraint = 2, $options = array()) {
+        $this->add_definition_rule($column_name, array(
+            'type' => 'CHAR',
+            'constraint' => $constraint
+        ), $options);
+    }
+
     public function text($column_name, $options = array()) {
         $this->add_definition_rule($column_name, array(
             'type' => 'TEXT'
