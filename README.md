@@ -69,10 +69,13 @@ $table->create_table();
 `Schema_Table_Definition` has a bunch of methods that allow you to create data types. These are all reasonably self-explanatory:
 
 * `integer($name)` - create an INT column
+* `tinyint($name)` - create an TINYINT column
 * `string($name, $constraint = 200)` - create a VARCHAR column (with optional constraint)
 * `text($name)` - create a TEXT column
+* `longtext($name)` - create a LONGTEXT column
 * `date($name)` - create a DATE column
 * `datetime($text)` - create a DATETIME column
+* `decimal($name, $constraint = '10,2')` - create an DECIMAL column (with optional constraint)
 * `boolean($name)` - MySQL doesn't have a native boolean type, so we create a TINYINT
 
 There are also two special methods to speed up your development.
