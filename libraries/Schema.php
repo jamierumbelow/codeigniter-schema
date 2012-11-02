@@ -23,10 +23,12 @@ class Schema {
 		'integer' 	=> 'INT',
 		'int'		=> 'INT',
 		'bigint'	=> 'BIGINT',
+        'decimal'   => 'DECIMAL',
 		'string' 	=> 'VARCHAR', 
 		'varchar'	=> 'VARCHAR',
 		'char'		=> 'CHAR',
 		'text' 		=> 'TEXT', 
+        'longtext' 	=> 'LONGTEXT', 
 		'date' 		=> 'DATE', 
 		'datetime' 	=> 'DATETIME', 
 		'boolean' 	=> 'TINYINT',
@@ -174,6 +176,20 @@ class Schema_Table_Definition {
         ), $options);
     }
     
+    public function tinyint($column_name, $options = array()) {
+        $this->add_definition_rule($column_name, array(
+            'type' => 'TINYINT'
+        ), $options);
+    }
+    
+    public function decimal($column_name, $constraint = '10,2', $options = array()) {
+        $this->add_definition_rule($column_name, array(
+            'type' => 'DECIMAL',
+            'constraint' => $constraint,
+            'unsigned'  => FALSE
+        ), $options);
+    }
+    
     public function auto_increment_integer($column_name, $options = array()) {
         $this->integer($column_name, array_merge(array(
             'unsigned' => TRUE,
@@ -200,6 +216,12 @@ class Schema_Table_Definition {
     public function text($column_name, $options = array()) {
         $this->add_definition_rule($column_name, array(
             'type' => 'TEXT'
+        ), $options);
+    }
+    
+    public function longtext($column_name, $options = array()) {
+        $this->add_definition_rule($column_name, array(
+            'type' => 'LONGTEXT'
         ), $options);
     }
     

@@ -43,6 +43,15 @@ class Schema_Table_Definition_Test extends UnitTest {
         );
     }
     
+    public function test_tinyint() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->tinyint('column_name', array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'TINYINT', 'option' => 'here'))
+        );
+    }
+    
     public function test_auto_increment_integer() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->auto_increment_integer('column_name', array( 'option' => 'here' ));
@@ -79,6 +88,15 @@ class Schema_Table_Definition_Test extends UnitTest {
         );
     }
     
+    public function test_longtext() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->longtext('column_name', array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'LONGTEXT', 'option' => 'here'))
+        );
+    }
+    
     public function test_date() {
         $schema_table_definition = new Schema_Table_Definition('table_name');
         $schema_table_definition->date('column_name', array( 'option' => 'here' ));
@@ -94,6 +112,15 @@ class Schema_Table_Definition_Test extends UnitTest {
         
         $this->assert_equal($schema_table_definition->columns(), array(
             'column_name' => array('type' => 'DATETIME', 'option' => 'here'))
+        );
+    }
+    
+    public function test_decimal() {
+        $schema_table_definition = new Schema_Table_Definition('table_name');
+        $schema_table_definition->decimal('column_name', '5,3', array( 'option' => 'here' ));
+        
+        $this->assert_equal($schema_table_definition->columns(), array(
+            'column_name' => array('type' => 'DECIMAL', 'constraint' => '5,3', 'option' => 'here'))
         );
     }
     
